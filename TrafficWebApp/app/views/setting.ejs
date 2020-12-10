@@ -9,7 +9,7 @@
         <h4 id='currentResolution' class='currentParams'></h4>
 
         <div class='spinner_area'>
-            <input type='number' value='0' id='fpsSpinner' class='fpsSpinner' data-max='60' data-min='0'>
+            <input type='number' value='0' id='fpsSpinner' class='fpsSpinner' data-max='30' data-min='0'>
             <input type='button' value='＋' class='btnspinner' data-cal='1' data-target='.fpsSpinner'>
             <input type='button' value='－' class='btnspinner' data-cal='-1' data-target='.fpsSpinner'>
             <button id='changeFpsBtn' class='button'>FPSを変更</button>
@@ -37,10 +37,12 @@
 
         <hr>
 
+        <img src="http://192.168.2.1:8080/?action=stream"/>
+
         <script>
             function getCurrentParams() {
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', `http://localhost:60080/get_current_params`);
+                xhr.open('GET', `http://192.168.2.1:60080/get_current_params`);
                 xhr.setRequestHeader('Content-Type', 'application/json');
 
                 // 受信に成功したとき
@@ -79,7 +81,7 @@
 
             function changeFps(fps) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', `http://localhost:60080/set_fps`);
+                xhr.open('POST', `http://192.168.2.1:60080/set_fps`);
                 xhr.setRequestHeader('Content-Type', 'application/json');
 
                 // 受信に成功したとき
@@ -98,7 +100,7 @@
 
             function changeRecordingTime(recordingTime) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', `http://localhost:60080/set_recordingTime`);
+                xhr.open('POST', `http://192.168.2.1:60080/set_recordingTime`);
                 xhr.setRequestHeader('Content-Type', 'application/json');
 
                 // 受信に成功したとき
@@ -117,7 +119,7 @@
 
             function changeResolution(resolution) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', `http://localhost:60080/set_resolution`);
+                xhr.open('POST', `http://192.168.2.1:60080/set_resolution`);
                 xhr.setRequestHeader('Content-Type', 'application/json');
 
                 // 受信に成功したとき

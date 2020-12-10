@@ -76,5 +76,5 @@ app.get('/', (req, res) => {
 
 // サーバを起動
 var port = process.env.PORT || 58080;
-app.listen(port);
+app.listen(port, '0.0.0.0');
 console.log("To view your app, open this link in your browser: http://localhost:" + port + "/");

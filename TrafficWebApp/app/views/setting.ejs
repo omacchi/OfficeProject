@@ -35,9 +35,18 @@
         </div>
         <button id='changeResolutionBtn' class='button'>解像度を変更</button>
 
+        <br><br>
+        <br>
+
+        <button id='startRecordBtn' class='videoctl start'>録画開始</button>
+        <button id='stopRecordBtn' class='videoctl stop'>録画停止</button>
+        <button id='reloadVideoBtn' class='videoctl reload'>動画を確認</button>
+
         <hr>
 
         <img src="http://192.168.2.1:8080/?action=stream"/>
+
+        <hr>
 
         <script>
             function getCurrentParams() {
@@ -136,6 +145,90 @@
                 xhr.send(JSON.stringify({resolution: resolution}));
             }
 
+            function startRecord() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', `http://192.168.2.1:60080/start_record`);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                // 受信に成功したとき
+                xhr.onload = function () {
+                    const params = JSON.parse(xhr.responseText);
+                    const result = params.result;
+
+                    if (result == 'OK') {
+                        alert('録画を開始します')
+                    } else if (result == 'NG') {
+                        alert('録画の開始に失敗しました')
+                    }
+                };
+
+                // XMLHttpRequestを送信
+                xhr.send(null);
+            }
+
+            function stopRecord() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', `http://192.168.2.1:60080/stop_record`);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                // 受信に成功したとき
+                xhr.onload = function () {
+                    const params = JSON.parse(xhr.responseText);
+                    const result = params.result;
+
+                    if (result == 'OK') {
+                        alert('録画を停止します')
+                    } else if (result == 'NG') {
+                        alert('録画の停止に失敗しました')
+                    }
+                };
+
+                // XMLHttpRequestを送信
+                xhr.send(null);
+            }
+
+            function startRecord() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', `http://192.168.2.1:60080/start_record`);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                // 受信に成功したとき
+                xhr.onload = function () {
+                    const params = JSON.parse(xhr.responseText);
+                    const result = params.result;
+
+                    if (result == 'OK') {
+                        alert('録画を開始します')
+                    } else if (result == 'NG') {
+                        alert('録画の開始に失敗しました')
+                    }
+                };
+
+                // XMLHttpRequestを送信
+                xhr.send(null);
+            }
+
+            function reloadVideo() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', `http://192.168.2.1:60080/reload_video`);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                // 受信に成功したとき
+                xhr.onload = function () {
+                    const params = JSON.parse(xhr.responseText);
+                    const result = params.result;
+
+                    if (result == 'OK') {
+                        // alert('動画を表示します')
+                    } else if (result == 'NG') {
+                        alert('動画の表示に失敗しました')
+                    }
+                };
+
+                // XMLHttpRequestを送信
+                xhr.send(null);
+            }
+
             // スピナー
             $(function() {
                 var arySpinnerCtrl = [];
@@ -218,6 +311,22 @@
                     changeResolution(resolution);
                 }
             };
+
+            // 録画開始ボタンが押されとき
+            document.getElementById('startRecordBtn').onclick = function () {
+                startRecord();
+            };
+
+            // 録画停止ボタンが押されとき
+            document.getElementById('stopRecordBtn').onclick = function () {
+                stopRecord();
+            };
+
+            // 動画確認ボタンが押されとき
+            document.getElementById('reloadVideoBtn').onclick = function () {
+                reloadVideo();
+            };
+
         </script>
     </body>
 </html>

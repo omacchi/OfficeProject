@@ -142,6 +142,24 @@ def setResolution():
     return jsonify({'result': 'OK'})
 
 
+@app.route('/start_record')
+def startRecord():
+    return jsonify({'result': 'OK'})
+    # エラーのときは、return jsonify({'result': 'NG'})
+
+
+@app.route('/stop_record')
+def stopRecord():
+    return jsonify({'result': 'OK'})
+    # エラーのときは、return jsonify({'result': 'NG'})
+
+
+@app.route('/reload_video')
+def reloadVideo():
+    return jsonify({'result': 'OK'})
+    # エラーのときは、return jsonify({'result': 'NG'})
+
+
 def main():
     app.run(host='0.0.0.0', port=60080)
 
